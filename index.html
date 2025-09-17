@@ -1,100 +1,26 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MR75 - হোম</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background-color: #006a4e; /* Bangladesh green */
-      font-family: Arial, sans-serif;
-    }
-    nav {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-    }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MR75 - Home</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
-    <a href="index.html">হোম</a>
-    <a href="games.html">গেমস</a>
-    <a href="news.html">নিউজ</a>
-    <a href="video.html">ভিডিও</a>
-  </nav>
-
-  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/examples/jsm/loaders/FontLoader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/examples/jsm/geometries/TextGeometry.js"></script>
-
-  <script>
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    const light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(10, 10, 10);
-    scene.add(light);
-
-    const ambient = new THREE.AmbientLight(0xaaaaaa);
-    scene.add(ambient);
-
-    const circleGeometry = new THREE.CircleGeometry(5, 64);
-    const circleMaterial = new THREE.MeshBasicMaterial({ color: 0xf42a41 });
-    const circle = new THREE.Mesh(circleGeometry, circleMaterial);
-    circle.position.z = -2;
-    scene.add(circle);
-
-    const loader = new THREE.FontLoader();
-    loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json',
-      function (font) {
-        const textGeometry = new THREE.TextGeometry('MR75', {
-          font: font,
-          size: 2,
-          height: 0.5,
-          curveSegments: 12,
-          bevelEnabled: true,
-          bevelThickness: 0.05,
-          bevelSize: 0.05,
-          bevelOffset: 0,
-          bevelSegments: 5,
-        });
-
-        const textMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
-        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
-        textGeometry.center();
-        scene.add(textMesh);
-
-        function animate() {
-          requestAnimationFrame(animate);
-          textMesh.rotation.y += 0.01;
-          renderer.render(scene, camera);
-        }
-        animate();
-      });
-
-    camera.position.z = 10;
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-  </script>
+  <header>
+    <h1 class="logo">MR75</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="games.html">Games</a>
+      <a href="news.html">News</a>
+      <a href="video.html">Videos</a>
+    </nav>
+  </header>
+  <main>
+    <section class="banner">
+      <h2>Welcome to MR75 Gaming Zone</h2>
+      <p>Play. Watch. Enjoy.</p>
+    </section>
+  </main>
 </body>
 </html>
