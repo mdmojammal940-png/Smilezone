@@ -1,1 +1,158 @@
-<!DOCTYPE html><html lang='bn'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>MR75 - হোম</title><link rel='stylesheet' href='style.css'></head><body><header><h1 class='logo'>MR75</h1><nav><a href='index.html'>হোম</a><a href='games.html'>গেমস</a><a href='news.html'>নিউজ</a><a href='videos.html'>ভিডিও</a></nav></header><main><section class='banner'><h2>MR75 গেমিং জোনে স্বাগতম</h2><p>খেলো। দেখো। উপভোগ করো।</p></section></main></body></html>
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr75 - Asia Cup 2025 News</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #006a4e;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    section {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+    }
+    h2 {
+      color: #ffcc00;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+    }
+    th {
+      background: #f42a41;
+      color: #fff;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <header>
+    <h1>📰 Asia Cup 2025 News - Mr75</h1>
+  </header>
+  <section>
+    <h2>বাংলাদেশ আফগানিস্তানকে হারাল</h2>
+    <p>বাংলাদেশ এশিয়া কাপ ২০২৫–এর গ্রুপ পর্বে আফগানিস্তানকে রুদ্ধশ্বাস লড়াইয়ে <b>৮ রানে হারিয়েছে</b>।
+    এই জয়ে টাইগাররা টিকে থাকল সুপার-৪ এর দৌড়ে।</p>
+
+    <h2>📊 বর্তমান পয়েন্ট টেবিল (গ্রুপ-বি)</h2>
+    <table>
+      <tr>
+        <th>দল</th>
+        <th>ম্যাচ</th>
+        <th>জয়</th>
+        <th>হার</th>
+        <th>পয়েন্ট</th>
+        <th>NRR</th>
+      </tr>
+      <tr>
+        <td>🇱🇰 শ্রীলঙ্কা</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>4</td>
+        <td>+1.546</td>
+      </tr>
+      <tr>
+        <td>🇧🇩 বাংলাদেশ</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>4</td>
+        <td>-0.270</td>
+      </tr>
+      <tr>
+        <td>🇦🇫 আফগানিস্তান</td>
+        <td>2</td>
+        <td>1</td>
+        <td>1</td>
+        <td>2</td>
+        <td>+2.150</td>
+      </tr>
+    </table>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/examples/jsm/loaders/FontLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/examples/jsm/geometries/TextGeometry.js"></script>
+
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("bg"), antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const light = new THREE.PointLight(0xffffff, 1);
+    light.position.set(10, 10, 10);
+    scene.add(light);
+
+    const ambient = new THREE.AmbientLight(0xaaaaaa);
+    scene.add(ambient);
+
+    const loader = new THREE.FontLoader();
+    loader.load("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json", function(font) {
+      const textGeometry = new THREE.TextGeometry("Mr75", {
+        font: font,
+        size: 4,
+        height: 1,
+        bevelEnabled: true,
+        bevelThickness: 0.1,
+        bevelSize: 0.1,
+        bevelSegments: 3,
+      });
+      const textMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      textGeometry.center();
+      scene.add(textMesh);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        textMesh.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+      animate();
+    });
+
+    camera.position.z = 15;
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
